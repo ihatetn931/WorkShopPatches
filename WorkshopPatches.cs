@@ -17,9 +17,9 @@ namespace BepInEx.StationeerModLoader.WorkshopPatches
                 if (File.Exists(ConfigFile.ModConfigPath))
                 {
                     ConfigFile.AttemptToLoadModConfig();
-                    ModLoaderWorkShopPatches path = new ModLoaderWorkShopPatches();
-                    await path.UpdateList();
                 }
+                ModLoaderWorkShopPatches path = new ModLoaderWorkShopPatches();
+                await path.UpdateList();
             }
         }
 
@@ -30,6 +30,7 @@ namespace BepInEx.StationeerModLoader.WorkshopPatches
             DataCleanup();
             RefreshList();
         }
+
         //Just here to update my config file for my modloader
         [HarmonyPatch(typeof(WorkshopMenu), nameof(WorkshopMenu.SaveModConfig))]
         public static class WorkshopMenu_SaveModConfig_Patch
