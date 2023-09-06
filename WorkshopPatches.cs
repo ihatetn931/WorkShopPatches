@@ -7,6 +7,7 @@ namespace BepInEx.StationeerModLoader.WorkshopPatches
 {
     internal class ModLoaderWorkShopPatches : WorkshopMenu
     {
+        //The patch for loadmodconfig this is where it update the modconfig.xml as well
         [HarmonyPatch(typeof(WorkshopMenu), nameof(WorkshopMenu.LoadModConfig))]
         public static class WorkshopMenu_LoadModConfig_Patch
         {
@@ -17,18 +18,19 @@ namespace BepInEx.StationeerModLoader.WorkshopPatches
                 {
                     ConfigFile.AttemptToLoadModConfig();
                     ModLoaderWorkShopPatches path = new ModLoaderWorkShopPatches();
-                    await path.Test();
+                    await path.UpdateList();
                 }
             }
         }
 
-        public async UniTask Test()
+        //Created my own Init() so I can call the Unitask refreshlist
+        public async UniTask UpdateList()
         {
             await GetModFolders();
             DataCleanup();
             RefreshList();
         }
-
+        //Just here to update my config file for my modloader
         [HarmonyPatch(typeof(WorkshopMenu), nameof(WorkshopMenu.SaveModConfig))]
         public static class WorkshopMenu_SaveModConfig_Patch
         {
@@ -42,6 +44,7 @@ namespace BepInEx.StationeerModLoader.WorkshopPatches
             }
         }
 
+        //How I update the list on game start, this is just a modfied version of RefreshList
         [HarmonyPatch(typeof(WorkshopMenu), nameof(WorkshopMenu.RefreshList))]
         public static class WorkshopMenu_RefreshList_Patch
         {
@@ -83,6 +86,7 @@ namespace BepInEx.StationeerModLoader.WorkshopPatches
             }
         }
 
+        //Just here to update my config file for my modloader
         [HarmonyPatch(typeof(WorkshopMenu), nameof(WorkshopMenu.UnsubscribeButton))]
         public static class WorkshopMenu_UnsubscribeButton_Patch
         {
