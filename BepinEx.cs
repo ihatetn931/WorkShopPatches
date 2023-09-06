@@ -1,6 +1,6 @@
 ﻿using HarmonyLib;
 
-namespace BepInEx.StationeerModLoader
+namespace BepInEx.StationeerModLoader.WorkshopPatches
 {
     [BepInPlugin(PLUGIN_GUID, PLUGIN_NAME, PLUGIN_VERSION)]
     public class BepinEx : BaseUnityPlugin
