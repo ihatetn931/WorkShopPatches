@@ -7,7 +7,7 @@ namespace BepInEx.StationeerModLoader.WorkshopPatches
     {
         public const string PLUGIN_GUID = "modder.ihatetn931.StationeersMods.ModLoader.WorkShopPatches";
         public const string PLUGIN_NAME = "Stationeers.ModLoader.WorkShopPatches";
-        public const string PLUGIN_VERSION = "1.0.0";
+        public const string PLUGIN_VERSION = "1.0.1";
 
         void Awake()
         {
